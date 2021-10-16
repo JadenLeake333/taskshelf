@@ -4,9 +4,104 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to TaskShelf</title>
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="static/images/icons/favicon.ico"/>
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="static/css/util.css">
+        <link rel="stylesheet" type="text/css" href="static/css/main.css">
+        <link rel="stylesheet" type="text/css" href="static/css/color-scheme.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet"> 
+    <!--===============================================================================================-->
+    <title> TaskShelf</title>
 </head>
-<body>
-    Hi
+<body class="bg-color-primary-3">
+    <nav>
+        <ul>
+            <li>
+                <a id="myBtn">Add Subject</a>
+                <!-- The Modal -->
+                <form action="/addSubject" method="POST">
+                    <div id="myModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Subject Name</h2>
+                        <input class="modal-input" type="text" required>
+                        <h2>Tasks</h2>
+                        <input class="modal-input" type="text">
+                        <div class="task-que"></div>
+                        <button id="add-task">Add Tasks</button>
+                        <button id="myBtn">Add Subject</button>
+                    </div>
+                    </div>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <div class="contain flex-row">
+        <div class="classes">
+            <div class="active-classes">
+                <h1 class="collapsible color-secondary-1-1">MIS351<span class="num-tasks"> - 1 Task</span></h1>
+                <div class="content">
+                    <div class="tasks flex-row">
+                        <p class="color-white fs-24">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure necessitatibus assumenda explicabo, nostrum mollitia natus laudantium distinctio architecto tenetur quis pariatur exercitationem omnis esse reiciendis earum dolor voluptatem doloribus? Eum labore vel, dolorem similique quas ipsum aperiam assumenda aut in.</p>
+                        <p class="color-white fs-24">Otcober 15 2021</p>
+                        <p class="color-white fs-24">Options</p>
+                    </div>
+                </div>
+            </div>
+            <div class="active-classes">
+                <h1 class="collapsible color-secondary-1-1">JPN101<span class="num-tasks"> - 2 Tasks</span></h1>
+                <div class="content">
+                    <div class="tasks flex-row">
+                        <p class="color-white fs-24">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure necessitatibus assumenda explicabo, nostrum mollitia natus laudantium distinctio architecto tenetur quis pariatur exercitationem omnis esse reiciendis earum dolor voluptatem doloribus? Eum labore vel, dolorem similique quas ipsum aperiam assumenda aut in.</p>
+                        <p class="color-white fs-24">Otcober 15 2021</p>
+                        <p class="color-white fs-24">Options</p>
+                    </div>
+                    <div class="tasks flex-row">
+                        <p class="color-white fs-20">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure necessitatibus assumenda explicabo, nostrum mollitia natus laudantium distinctio architecto tenetur quis pariatur exercitationem omnis esse reiciendis earum dolor voluptatem doloribus? Eum labore vel, dolorem similique quas ipsum aperiam assumenda aut in.</p>
+                        <p class="color-white fs-20">Otcober 15 2021</p>
+                        <p class="color-white fs-20">Options</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="right-sidebar">
+            <h1>Upcoming Tasks</h1>
+            <div class="upcoming-tasks flex-row">
+                <p class="color-white fs-20">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure necessitatibus assumenda explicabo</p>
+                <p class="color-white fs-20">Otcober 15 2021</p>
+                <p class="color-white fs-20">Options</p>
+            </div>
+        </div>
+    </div>
+    
+    <!--===============================================================================================-->	
+        <script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+        <script src="static/vendor/bootstrap/js/popper.js"></script>
+        <script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+        <script src="static/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+        <script src="static/vendor/tilt/tilt.jquery.min.js"></script>
+    <!--===============================================================================================-->
+        <script src="static/js/main.js"></script>
+	    <script src="static/js/dropdown.js"></script>
+        <script src="static/js/modal.js"></script>
+
 </body>
 </html>

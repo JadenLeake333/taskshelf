@@ -81,10 +81,10 @@ ul, li {
 
 
 /*---------------------------------------------*/
-input {
+/* input {
 	outline: none;
 	border: none;
-}
+} */
 
 textarea {
   outline: none;
@@ -147,7 +147,108 @@ iframe {
   color: #666666;
 }
 
+.classes{
+  width: 65%;
+}
 
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+.tasks {
+  gap: 3em;
+  border-bottom: 2px dotted #E9C725;
+}
+.collapsible {
+  font-family: 'Fugaz One', cursive;
+  font-size: 3.125rem;
+  cursor: pointer;
+  padding: 18px;
+  text-align: left;
+}
+
+.collapsible::after {
+  content: '\2193'; /*Down arrow*/
+  color: black;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active::after {
+  content: "\2212"; /*Minus sign -*/
+}
+
+.list-style::before {
+  content: "\2219";
+}
+
+.right-sidebar{
+  width: 35%;
+}
+
+.upcoming-tasks {
+  display: flex;
+  border-bottom: 2px dotted #E9C725;
+  gap: 3em;
+}
+
+@media(max-width: 500px) {
+  .collapsible::after {
+    content: '\2193'; /*Down arrow*/
+    display: none
+  }
+  
+  .active::after {
+    content: "\2212"; /*Minus sign -*/
+    display: none;
+  }
+  
+  .list-style::before {
+    content: "\2219";
+    display: none;
+  }
+
+  .tasks {
+    display: flex;
+    flex-direction: column !important;
+  }
+}
+
+@media(max-width: 775px) {
+  .classes {
+    width: 100%;
+  }
+  .collapsible {
+    text-align: center;
+  }
+
+  .contain {
+    flex-direction: column !important; 
+  }
+
+  .right-sidebar {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media(max-width: 1175px) {
+  .classes {
+    width: 100%;
+  }
+  .collapsible {
+    text-align: center;
+  }
+
+  .upcoming-tasks {
+    gap: 1em;
+    flex-direction: column !important;
+  }
+}
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
 
@@ -207,6 +308,54 @@ iframe {
   padding: 2em;
 }
 
+/*-------------------------------------------------
+[Modal]
+
+ /* The Modal (background) */
+ .modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.modal-input {
+  border: black 1px solid;
+  border-radius: 100px;
+  margin: 1em;
+  padding: .5em .5em;
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} 
+*-------------------------------------------------/
 /*------------------------------------------------------------------
 [  ]*/
 .login100-pic {
