@@ -81,10 +81,10 @@ ul, li {
 
 
 /*---------------------------------------------*/
-/* input {
+input {
 	outline: none;
 	border: none;
-} */
+} 
 
 textarea {
   outline: none;
@@ -339,6 +339,17 @@ iframe {
   border-radius: 100px;
   margin: 1em;
   padding: .5em .5em;
+  outline: black !important; 
+  border: black 1px solid !important;
+}
+
+.modal-input:focus {
+  outline: black !important; 
+  border: black 1px solid !important;
+}
+
+#add-task {
+  margin: 2em;
 }
 
 /* The Close Button */

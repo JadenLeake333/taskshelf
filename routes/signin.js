@@ -72,7 +72,6 @@ app.post('/makeAccount', function(request,response){
   var username = request.body.email
   var pass = request.body.pass
   var verifypass = request.body.pass2
-  console.log(username)
   if (pass === verifypass){
     datab.all('SELECT * FROM login WHERE email = ?',username,(err,rows) =>{
       if(rows.length == 0){

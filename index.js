@@ -24,32 +24,15 @@ app.engine('html', require('ejs').renderFile); // EJS Template Engine
 app.set('view engine', 'html');
 
 const { database } = require('./database');
+
 require('./routes/signin')(app);
+require('./routes/task_functions')(app);
 
 //Init database
 const db = new database();
-
-datab = new sqlite3.Database('mydb', (err) => {
-      if (err) {
-        return console.error(err.message);
-      }
-      console.log('Connected to the database from index.js');
-}); 
-
-db.queryDB(`CREATE TABLE IF NOT EXISTS login(
-                USERID INTEGER PRIMARY KEY AUTOINCREMENT,
-                EMAIL TEXT NOT NULL UNIQUE,
-                PASSWORD TEXT NOT NULL);`,"Login Table")
-
-db.queryDB(`CREATE TABLE IF NOT EXISTS classes(
-                USERID INTEGER,
-                CLASSNAMES JSON);`,"classes Table")
-
-db.queryDB(`CREATE TABLE IF NOT EXISTS class_list(
-                USERID INTEGER PRIMARY KEY AUTOINCREMENT,
-                CLASSNAME TEXT NOT NULL UNIQUE,
-                TASKS JSON NOT NULL);`,"class_list Table")
-
+// db.dropTable("class_list")
+db.initalize()
+db.printTable("class_list")
 
 app.listen(3000, () => {
   console.log('server started on port 3000');

@@ -21,7 +21,16 @@ taskBtn.onclick = function() {
     const taskInput = document.createElement("input")
     taskInput.setAttribute("type","text")
     taskInput.setAttribute("class","modal-input")
+    taskInput.setAttribute("name","tasks")
+    taskInput.setAttribute("required","")
     modalContent.appendChild(taskInput)
+
+    const taskDate = document.createElement("input")
+    taskDate.setAttribute("type","date")
+    taskDate.setAttribute("class","modal-input")
+    taskDate.setAttribute("name","date")
+    taskDate.setAttribute("required","")
+    modalContent.appendChild(taskDate)
 }
 
 // When the user clicks on <span> (x), close the modal

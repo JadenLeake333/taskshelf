@@ -10,6 +10,19 @@ class database{
      });  
  }
  
+ initalize() {
+    this.queryDB(`CREATE TABLE IF NOT EXISTS login(
+                USERID INTEGER PRIMARY KEY AUTOINCREMENT,
+                EMAIL TEXT NOT NULL UNIQUE,
+                PASSWORD TEXT NOT NULL);`,"Login Table")
+
+    this.queryDB(`CREATE TABLE IF NOT EXISTS class_list(
+                USERID INTEGER,
+                CLASSNAME TEXT NOT NULL UNIQUE,
+                TASKS TEXT NOT NULL,
+                DUE DATE NOT NULL);`,"class_list Table")
+ }
+
  dropTable(tablename){
      var drop = `DROP TABLE `+tablename+`;`
       this.db.run(drop, (err) =>{
@@ -28,7 +41,16 @@ class database{
       console.log(`${descriptor} created`)
     });
   }
- 
+
+  getSubjectTasks(res, id) {
+    this.db.all(`SELECT * FROM class_list WHERE USERID = ${id}`,(err,rows) => {
+      if (err) {
+          throw err;
+        }
+    res.send({"task_data":rows});
+  })
+  }
+
    verify(email,pass){
    var search = `SELECT * FROM login
                  WHERE email=\"`+email+`\"
