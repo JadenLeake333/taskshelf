@@ -1,3 +1,6 @@
+/**************************
+ *    SUBJECT ADD MODAL   *
+ **************************/
 // Get the modal
 const modal = document.getElementById("myModal");
 
@@ -44,3 +47,44 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 } 
+
+/*********************
+ *    REMOVE MODAL   *
+ *********************/
+ const removeModal = document.getElementById("removeModalDiv");
+
+ // Get the button that opens the modal
+ const removeBtn = document.getElementById("removeModal");
+
+ const removeSpan = document.getElementsByClassName("close")[1];
+ const removeModalContent = document.getElementsByClassName("subject-que")[0];
+
+ removeBtn.onclick = function() {
+  removeModal.style.display = "block";
+}
+
+removeSpan.onclick = function() {
+  removeModal.style.display = "none";
+}
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == removeModal) {
+    removeModal.style.display = "none";
+  }
+} 
+fetch('/getSubjects')
+.then(response => response.json())
+.then(data => {
+  let taskJSON = data.task_data
+  let inputs = ""
+  taskJSON.forEach((subject) =>{
+    inputs += `<label class="fs-46" for="${subject.CLASSNAME}">${subject.CLASSNAME}</label><input class="remove-modal-input" type="checkbox" name="${subject.CLASSNAME}"><br>`
+  })
+  removeModalContent.insertAdjacentHTML('beforeend', inputs)
+})
+
+/**************************
+ *    TASK ADD MODAL   *
+ **************************/

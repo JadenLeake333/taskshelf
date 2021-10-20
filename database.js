@@ -16,11 +16,15 @@ class database{
                 EMAIL TEXT NOT NULL UNIQUE,
                 PASSWORD TEXT NOT NULL);`,"Login Table")
 
-    this.queryDB(`CREATE TABLE IF NOT EXISTS class_list(
+    this.queryDB(`CREATE TABLE IF NOT EXISTS task_list(
+                TASKID INTEGER PRIMARY KEY AUTOINCREMENT,
                 USERID INTEGER,
-                CLASSNAME TEXT NOT NULL UNIQUE,
-                TASKS TEXT NOT NULL,
-                DUE DATE NOT NULL);`,"class_list Table")
+                CLASSNAME TEXT NOT NULL,
+                TASKS JSON NOT NULL);`,"task_list Table")
+    
+    this.queryDB(`CREATE TABLE IF NOT EXISTS subjects(
+                USERID INTEGER,
+                CLASSNAME TEXT NOT NULL);`,"subjects Table")
  }
 
  dropTable(tablename){
@@ -42,13 +46,22 @@ class database{
     });
   }
 
-  getSubjectTasks(res, id) {
-    this.db.all(`SELECT * FROM class_list WHERE USERID = ${id}`,(err,rows) => {
+  getSubjects(res, id) {
+    this.db.all(`SELECT CLASSNAME, TASKS FROM task_list WHERE USERID = ${id}`,(err,rows) => {
       if (err) {
           throw err;
         }
     res.send({"task_data":rows});
-  })
+    })
+  }
+
+  getUpcomingTasks(res, id) {
+    this.db.all(`SELECT CLASSNAME, TASKS FROM task_list WHERE USERID = ${id}`,(err,rows) => {
+      if (err) {
+          throw err;
+        }
+    res.send({"task_data":rows});
+    })
   }
 
    verify(email,pass){

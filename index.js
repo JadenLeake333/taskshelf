@@ -30,9 +30,9 @@ require('./routes/task_functions')(app);
 
 //Init database
 const db = new database();
-// db.dropTable("class_list")
+//db.dropTable("task_list")
 db.initalize()
-db.printTable("class_list")
+db.printTable("task_list")
 
 app.listen(3000, () => {
   console.log('server started on port 3000');

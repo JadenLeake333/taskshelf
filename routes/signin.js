@@ -9,6 +9,7 @@ app.engine('html', require('ejs').renderFile); // EJS Template Engine
 app.set('view engine', 'html');
 
 const { database } = require('../database.js');
+const session = require('express-session');
 
 const db = new database();
 
@@ -91,4 +92,16 @@ app.post('/makeAccount', function(request,response){
   }
 });
 //End Signup
+
+//Logout
+
+app.get('/logout', function(request, response){
+  if(request.session){
+    request.session.destroy();
+    request.session = null;
+    response.redirect('/');
+  }else{
+    response.redirect('/');
+  }
+});
 }

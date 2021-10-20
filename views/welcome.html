@@ -29,40 +29,75 @@
 </head>
 <body class="bg-color-primary-3">
     <nav>
-        <ul>
+        <ul class="modal-list flex-row">
             <li>
-                <a id="myBtn">Add Subject</a>
+                <a id="myBtn" class="fs-32 nav-button">Add Subject</a>
                 <!-- The Modal -->
                 <form action="/addSubject" method="POST">
                     <div id="myModal" class="modal">
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                        <h2>Subject Name</h2>
-                        <input class="modal-input" type="text" name="subject" required>
-                        <h2>Tasks</h2>
-                        <input class="modal-input" type="text" name="tasks" required>
-                        <h2>Date</h2>
-                        <input class="modal-input" type="date" name="date" required>
-                        <div class="task-que"></div>
-                        <a id="add-task">Add Tasks</a>
-                        <button id="myBtn" type="submit">Confirm Subject</button>
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>Subject Name</h2>
+                            <input class="modal-input" type="text" name="subject" required>
+                            <h2>Task</h2>
+                            <input class="modal-input" type="text" name="tasks" required>
+                            <h2>Date Due</h2>
+                            <input class="modal-input" type="date" name="date" required>
+                            <div class="task-que"></div>
+                            <a id="add-task" class="modal-button">Add Tasks</a>
+                            <button id="myBtn" type="submit" class="modal-button confirm">Confirm Subject</button>
+                        </div>
                     </div>
+                </form>
+            </li>
+            <li>
+                <a id="removeModal" class="fs-32 nav-button">Remove Subject</a>
+                <!-- The Modal -->
+                <form action="/removeSubject" method="DELETE">
+                    <div id="removeModalDiv" class="modal">
+                        <!-- Modal content -->
+                        <div class="remove-modal-content">
+                            <span class="close">&times;</span>
+                            <div class="subject-que"></div>
+                            <button id="myBtn" type="submit" class="fs-36 modal-button">Confirm Removal</button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <li>
+                <a id="logout" href="/logout" class="logout fs-32 nav-button">Logout</a>
+            </li>
+            <li>
+                <form action="/addTask" method="GET">
+                    <div id="addModalDiv" class="modal">
+                <!-- Modal content -->
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <div class="add-task-que">
+                                <h2>Task</h2>
+                                <input class="modal-input" type="text" name="tasks" required>
+                                <h2>Date Due</h2>
+                                <input class="modal-input" type="date" name="date" required>
+                            </div>
+                            <div class="modal-function-button flex-row">
+                                <a id="add-task2" >Add Tasks</a>
+                                <!-- <a id="add-task2">Remove Previous Task</a> -->
+                            </div>
+                            <button id="myBtn" type="submit" class="fs-36 modal-button">Submit Task</button>
+                        </div>
                     </div>
                 </form>
             </li>
         </ul>
     </nav>
+
     <div class="contain flex-row">
         <div class="classes">
         </div>
         <div class="right-sidebar">
-            <h1>Upcoming Tasks</h1>
-            <div class="upcoming-tasks flex-row">
-                <p class="color-white fs-20">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure necessitatibus assumenda explicabo</p>
-                <p class="color-white fs-20">Otcober 15 2021</p>
-                <p class="color-white fs-20">Options</p>
-            </div>
+            <h1 class="sidebar-header">Upcoming Tasks</h1>
+
         </div>
     </div>
     
@@ -76,7 +111,6 @@
     <!--===============================================================================================-->
     <script src="static/vendor/tilt/tilt.jquery.min.js"></script>
     <!--===============================================================================================-->
-    
         <script src="static/js/populate_page.js"></script>  
         <script src="static/js/main.js"></script>
         <script src="static/js/modal.js"></script>
