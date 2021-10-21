@@ -14,17 +14,18 @@ class database{
     this.queryDB(`CREATE TABLE IF NOT EXISTS login(
                 USERID INTEGER PRIMARY KEY AUTOINCREMENT,
                 EMAIL TEXT NOT NULL UNIQUE,
-                PASSWORD TEXT NOT NULL);`,"Login Table")
+                PASSWORD TEXT NOT NULL);`,"Login Table created")
 
     this.queryDB(`CREATE TABLE IF NOT EXISTS task_list(
                 TASKID INTEGER PRIMARY KEY AUTOINCREMENT,
                 USERID INTEGER,
                 CLASSNAME TEXT NOT NULL,
-                TASKS JSON NOT NULL);`,"task_list Table")
+                TASKS TEXT NOT NULL,
+                DUE DATE NOT NULL);`,"task_list Table created")
     
     this.queryDB(`CREATE TABLE IF NOT EXISTS subjects(
                 USERID INTEGER,
-                CLASSNAME TEXT NOT NULL);`,"subjects Table")
+                CLASSNAME TEXT NOT NULL);`,"subjects Table created")
  }
 
  dropTable(tablename){
@@ -42,46 +43,37 @@ class database{
       if(err){
         return console.log(err.message);
       }
-      console.log(`${descriptor} created`)
+      console.log(`${descriptor}`)
     });
   }
 
   getSubjects(res, id) {
-    this.db.all(`SELECT CLASSNAME, TASKS FROM task_list WHERE USERID = ${id}`,(err,rows) => {
+    this.db.all(`SELECT CLASSNAME FROM subjects WHERE USERID = ${id}`,(err,rows) => {
       if (err) {
           throw err;
         }
-    res.send({"task_data":rows});
+    res.send(rows);
+    })
+  }
+  
+  queryTasks(res, id, classname) {
+    this.db.all(`SELECT TASKID, TASKS, DUE FROM task_list WHERE USERID = ${id} AND CLASSNAME = '${classname}'`,(err,rows) => {
+      if (err) {
+          throw err;
+        }
+      console.log(rows)
+      res.send({"task_data":rows});
     })
   }
 
   getUpcomingTasks(res, id) {
-    this.db.all(`SELECT CLASSNAME, TASKS FROM task_list WHERE USERID = ${id}`,(err,rows) => {
+    this.db.all(`SELECT CLASSNAME, TASKS, DUE FROM task_list WHERE USERID = ${id}`,(err,rows) => {
       if (err) {
           throw err;
         }
     res.send({"task_data":rows});
     })
   }
-
-   verify(email,pass){
-   var search = `SELECT * FROM login
-                 WHERE email=\"`+email+`\"
-                 AND password=\"`+pass+`\";`
- 
-   console.log(search)
-   this.db.all(search,(err,rows) =>{
-       if(err){
-         return console.log(err.message);
-       }
- 
-       rows.forEach((row) => {
-         return true;
-       })
-     })
-   }
- // End Login DB
- 
  //Print Table
    
    printTable(table){
@@ -95,20 +87,6 @@ class database{
        })
      })
    }
- 
-//  updateTable(id,date,newName){
-//      var update = `UPDATE products 
-//                    SET PRODUCT = \"`+newName+`\"
-//                    WHERE USERID = `+id+` AND EXPIRATION= \"`+date+`\";`
- 
-//      this.db.all(update,(err) =>{
-//        //console.log(update)
-//        if(err){
-//          console.log(err.message)
-//        }
-//        console.log("Table updated")
-//      })
-//    }
 }
 
  module.exports={
