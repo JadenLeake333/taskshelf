@@ -49,7 +49,7 @@ window.onclick = function(event) {
 } 
 
 /*********************
- *    REMOVE MODAL   *
+ *    REMOVE SUBJECT MODAL   *
  *********************/
  const removeModal = document.getElementById("removeModalDiv");
 
@@ -77,9 +77,8 @@ window.onclick = function(event) {
 fetch('/getSubjects')
 .then(response => response.json())
 .then(data => {
-  let taskJSON = data.task_data
   let inputs = ""
-  taskJSON.forEach((subject) =>{
+  data.forEach((subject) =>{
     inputs += `<label class="fs-46" for="${subject.CLASSNAME}">${subject.CLASSNAME}</label><input class="remove-modal-input" type="checkbox" name="${subject.CLASSNAME}"><br>`
   })
   removeModalContent.insertAdjacentHTML('beforeend', inputs)

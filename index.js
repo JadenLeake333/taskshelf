@@ -30,7 +30,8 @@ require('./routes/task_functions')(app);
 
 //Init database
 const db = new database();
-//db.dropTable("task_list")
+// db.dropTable("task_list")
+// db.dropTable("subjects")
 db.initalize()
 db.printTable("task_list")
 
