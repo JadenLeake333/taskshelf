@@ -8,6 +8,11 @@
 .color-primary-3 { color: #4455B1 }
 .color-primary-4 { color: #2A3DA0 }
 
+.bg-color-gradient { 
+    background: rgb(34,193,195);
+    background: linear-gradient(35deg, rgba(34,193,195,1) 0%, rgba(45,63,253,1) 100%);
+}
+
 .color-secondary-1-0 { color: #FFE66B }	/* Main Secondary color (1) */
 .color-secondary-1-1 { color: #FFF3BA }
 .color-secondary-1-2 { color: #FFEC8F }

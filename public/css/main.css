@@ -219,6 +219,10 @@ nav {
   gap: 1.5em;
 }
 
+.nav-icon {
+  visibility: hidden;
+}
+
 @media(max-width: 500px) {
   .collapsible::after {
     content: '\2193'; /*Down arrow*/
@@ -274,6 +278,16 @@ nav {
   .upcoming-tasks-data {
     width: 100%
   }
+  .modal-list {
+    flex-direction: column !important;
+    width: max-content;
+    margin: 0 auto;
+    /* visibility: hidden; */
+  }
+
+  /* .nav-icon {
+    visibility: visible;
+  } */
 }
 
 @media(max-width: 1175px) {
@@ -436,7 +450,20 @@ nav {
   width: 30%; /* Could be more or less, depending on screen size */
 }
 
+.remove-task-modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 45%; /* Could be more or less, depending on screen size */
+}
+
 input[type="checkbox"] {
+  margin-left: 1em;
+  transform: scale(2.45);
+}
+
+input[type="radio"] {
   margin-left: 1em;
   transform: scale(2.45);
 }

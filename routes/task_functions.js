@@ -72,13 +72,43 @@ module.exports = function(app){
 
     app.get('/addTask',function(request, response) {
         if(request.session.loggedin){
+            let subject = request.query.subject
+            if(typeof(request.query.tasks) == "object"){
+                for(let i = 0; i < request.query.tasks.length; i++){
+                    db.queryDB(`INSERT INTO task_list(USERID,CLASSNAME,TASKS, DUE)
+                                VALUES(${request.session.ids},"${subject}","${request.query.tasks[i]}","${request.query.date[i]}")`,"insert tasks")
+                }
+            }else{
+                db.queryDB(`INSERT INTO task_list(USERID,CLASSNAME,TASKS, DUE)
+                                VALUES(${request.session.ids},"${subject}","${request.query.tasks}","${request.query.date}")`,"insert tasks")
+            }
             response.redirect('/home')
         }
         else{
             response.redirect('/')
         }
     });
+    app.get('/getTasks',function(request, response) {
+        if(request.session.loggedin){
+            db.getTasks(response, request.session.ids)
+        }
+        else{
+            response.redirect('/')
+        }
+    })
 
+    app.get('/removeTask',function(request, response) {
+        if(request.session.loggedin){
+            Object.keys(request.query).forEach(id =>{
+                db.queryDB(`DELETE FROM task_list
+                            WHERE TASKID = ${id}`, "task deleted")
+                })
+                response.redirect('/home')
+            }
+        else{
+            response.redirect('/')
+        }
+    })
     app.patch('/updateTasks',function(request, response) {
         if(request.session.loggedin){
             db.queryDB(`UPDATE task_list
