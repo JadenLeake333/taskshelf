@@ -27,8 +27,9 @@
 
     <title> TaskShelf</title>
 </head>
-<body class="bg-color-primary-3">
+<body class="bg-color-gradient">
     <nav>
+        <h5 class="nav-icon">X</h5>
         <ul class="modal-list flex-row">
             <li>
                 <a id="myBtn" class="fs-32 nav-button">Add Subject</a>
@@ -66,22 +67,24 @@
                 </form>
             </li>
             <li>
-                <a id="logout" href="/logout" class="logout fs-32 nav-button">Logout</a>
-            </li>
-            <li>
+                <a id="addTaskModal" class="fs-32 nav-button">Add Tasks</a>
                 <form action="/addTask" method="GET">
                     <div id="addModalDiv" class="modal">
                 <!-- Modal content -->
                         <div class="modal-content">
                             <span class="close">&times;</span>
-                            <div class="add-task-que">
+                            <span id="insert-classes">
+
+                            </span>
+                            <div class="add-task-que flex-col">
+                                
                                 <h2>Task</h2>
                                 <input class="modal-input" type="text" name="tasks" required>
                                 <h2>Date Due</h2>
                                 <input class="modal-input" type="date" name="date" required>
                             </div>
                             <div class="modal-function-button flex-row">
-                                <a id="add-task2" >Add Tasks</a>
+                                <a id="add-task2">Add Tasks</a>
                                 <!-- <a id="add-task2">Remove Previous Task</a> -->
                             </div>
                             <div class="send-name"></div>
@@ -89,6 +92,23 @@
                         </div>
                     </div>
                 </form>
+            </li>
+            <li>
+                <a id="removeTaskModal" class="fs-32 nav-button">Remove Task</a>
+                <!-- The Modal -->
+                <form action="/removeTask" method="DELETE">
+                    <div id="removeTaskModalDiv" class="modal">
+                        <!-- Modal content -->
+                        <div class="remove-task-modal-content">
+                            <span class="close">&times;</span>
+                            <div class="remove-task-que"></div>
+                            <button id="myBtn" type="submit" class="fs-36 modal-button">Confirm Removal</button>
+                        </div>
+                    </div>
+                </form>
+            </li>
+            <li>
+                <a id="logout" href="/logout" class="color-black fs-32 nav-button">Logout</a>
             </li>
         </ul>
     </nav>

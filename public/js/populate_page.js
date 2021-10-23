@@ -58,33 +58,19 @@ fetch("/getSubjects")
                 tasks += `<div class="tasks flex-row">
                     <p id="${className.CLASSNAME}-${taskJSON[j].TASKID}-task" class="color-white fs-24">${taskJSON[j].TASKS}</p>
                     <p id="${className.CLASSNAME}-${taskJSON[j].TASKID}-date" class="color-white fs-24">${taskJSON[j].DUE}</p>
-                    <span class="color-white fs-24 flex-row" id="${className.CLASSNAME}" >
-                        <img id="add-${className.CLASSNAME}-${taskJSON[j].TASKID}" src="https://img.icons8.com/fluency-systems-regular/48/000000/plus--v1.png"/>
-                        <img id="edit-${className.CLASSNAME}-${taskJSON[j].TASKID}" src="https://img.icons8.com/material-outlined/48/000000/pencil--v1.png"/>
-                        <img id="delete-${className.CLASSNAME}-${taskJSON[j].TASKID}" src="https://img.icons8.com/material-outlined/48/000000/trash--v1.png"/>
-                    </span>
                 </div>`
             }
             makeCollapse()
             if(taskJSON.length == 0){
                 tasks += `<div class="tasks flex-row">
-                    <p class="color-white fs-24">Looks like you have no tasks here! Click on the + to add some!</p>
-                    <span class="color-white fs-24 flex-row">
-                        <img id="" src="https://img.icons8.com/fluency-systems-regular/48/000000/plus--v1.png"/>
-                        <img id="" src="https://img.icons8.com/material-outlined/48/000000/pencil--v1.png"/>
-                        <img id="" src="https://img.icons8.com/material-outlined/48/000000/trash--v1.png"/>
-                    </span>
-                </div>`
+                            <p class="color-white fs-24">Looks like you have no tasks here! Click on "Add Tasks" to add some!</p>
+                          </div>`
             }
             tasks += "</div></div>"
             taskDiv += tasks
 
             parentDiv.insertAdjacentHTML('beforeend', taskDiv)
             makeCollapse()
-
-            $("img").on("click", function(){
-                console.log(this)
-            })
         })
         
     })
@@ -97,6 +83,12 @@ fetch("/getUpcomingTasks")
 .then(data => {
 
     let taskJSON = data.task_data
+    if (taskJSON.length == 0) {
+        var upcomingDiv = `<div class="upcoming-tasks flex-row">
+        <p class="upcoming-tasks-data__first color-white fs-24">Nothing due in the next 3 days!</p>`
+        upcomingTasks.insertAdjacentHTML('beforeend', upcomingDiv)
+        return
+    }
     taskJSON.forEach((task, idx) =>{
             var upcomingDiv = ''
             let dateDue = new Date(task.DUE)

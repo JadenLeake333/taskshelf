@@ -55,13 +55,21 @@ class database{
     res.send(rows);
     })
   }
-  
+
+  getTasks(res, id) {
+    this.db.all(`SELECT CLASSNAME, TASKID, TASKS, DUE FROM task_list WHERE USERID = ${id}`,(err,rows) => {
+      if (err) {
+          throw err;
+        }
+      res.send({"task_data":rows});
+    })
+  }
+
   queryTasks(res, id, classname) {
     this.db.all(`SELECT TASKID, TASKS, DUE FROM task_list WHERE USERID = ${id} AND CLASSNAME = '${classname}'`,(err,rows) => {
       if (err) {
           throw err;
         }
-      console.log(rows)
       res.send({"task_data":rows});
     })
   }
