@@ -23,13 +23,18 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap" rel="stylesheet"> 
+        <link href="/static/css/hamburgers.css" rel="stylesheet">
     <!--===============================================================================================-->
 
     <title> TaskShelf</title>
 </head>
 <body class="bg-color-gradient">
     <nav>
-        <h5 class="nav-icon">X</h5>
+        <button class="hamburger hamburger--arrow" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
         <ul class="modal-list flex-row">
             <li>
                 <a id="myBtn" class="fs-32 nav-button">Add Subject</a>
@@ -116,9 +121,9 @@
     <div class="contain flex-row">
         <div class="classes">
         </div>
-        <div class="right-sidebar">
+        <div class="sidebar">
             <h1 class="sidebar-header">Upcoming Tasks</h1>
-
+            <div class="right-sidebar">
         </div>
     </div>
     

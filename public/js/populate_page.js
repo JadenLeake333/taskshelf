@@ -1,8 +1,8 @@
 const parentDiv = document.getElementsByClassName("classes")[0]
-const upcomingTasks = document.getElementsByClassName("sidebar-header")[0]
+const upcomingTasks = document.getElementsByClassName("right-sidebar")[0]
 
 const pluralize = (word, num) => {
-    if (num == 1) {
+    if (num === 1) {
         return word
     }
     else{
@@ -48,7 +48,7 @@ async function getUpcoming () {
 
     let taskJSON = data.task_data
 
-    if (taskJSON.length == 0) {
+    if (taskJSON.length === 0) {
         var upcomingDiv = `<div class="upcoming-tasks flex-row">
         <p class="upcoming-tasks-data__first color-white fs-24">Nothing due in the next 3 days!</p>`
         upcomingTasks.insertAdjacentHTML('beforeend', upcomingDiv)
@@ -64,7 +64,7 @@ async function getUpcoming () {
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
             let color = diffDays <= 1 ? "red" : "orange";
-            let dueString = diffDays == 0 ? "DUE TODAY" : diffDays < 0 ? "LATE" : `${diffDays}  ${pluralize("day", diffDays)} left!`
+            let dueString = diffDays === 0 ? "DUE TODAY" : diffDays < 0 ? "LATE" : `${diffDays}  ${pluralize("day", diffDays)} left!`
             if(diffDays <= 3) {
                 upcomingDiv += `<div class="upcoming-tasks flex-row">
                 <p class="upcoming-tasks-data__first color-white fs-24">${task.CLASSNAME} - ${task.TASKS}</p>
@@ -80,6 +80,14 @@ getUpcoming();
 
 async function mainDropdown() {
     let subjects = await getSubjects()
+    if (subjects.length === 0) {
+        var upcomingDiv = `<div class="active-classes">
+        <h1 class="collapsible color-secondary-1-1">Try adding some subjects</h1>
+        <div class="content"></div></div>`
+        parentDiv.insertAdjacentHTML('beforeend', upcomingDiv)
+        return
+    }
+
     subjects.forEach( async function subject(subjects) {
             let tasks = await queryTasks(subjects)
 
@@ -89,6 +97,8 @@ async function mainDropdown() {
             var taskDiv = '';
 
             let plural = pluralize("task", taskJSON.length)
+            
+            
 
             taskDiv += `<div class="active-classes">
                                 <h1 class="collapsible color-secondary-1-1">${CLASSNAME}
@@ -106,7 +116,7 @@ async function mainDropdown() {
             })
 
             makeCollapse()
-            if(taskJSON.length == 0){
+            if(taskJSON.length === 0){
                 taskHTML += `<div class="tasks flex-row">
                             <p class="color-white fs-24">Looks like you have no tasks here! Click on "Add Tasks" to add some!</p>
                           </div>`
