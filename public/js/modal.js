@@ -1,3 +1,5 @@
+
+
 /**************************
  *    SUBJECT ADD MODAL   *
  **************************/
@@ -180,7 +182,6 @@ fetch('/getTasks')
 .then(response => response.json())
 .then(data => {
   let inputs = ""
-  console.log(data)
   data.task_data.forEach((subject) =>{
     inputs += `<label class="fs-46" for="${subject.TASKS}">${subject.CLASSNAME} - ${subject.TASKS}</label><input class="remove-task-modal-input" type="checkbox" name="${subject.TASKID}"><br>`
   })
